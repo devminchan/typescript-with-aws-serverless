@@ -1,6 +1,5 @@
-*.zip
-
 # SERVERELSS .gitignore!!
+
 # package directories
 **/node_modules
 **/jspm_packages
@@ -8,4 +7,5 @@
 # Serverless directories
 **/.serverless
 
+# For sub folders
 *.gitignore
