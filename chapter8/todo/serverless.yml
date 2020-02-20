@@ -8,10 +8,15 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  dynamodb:
+    stages:
+      dev
 
 # Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
+  - serverless-dynamodb-local # Remember dynamodb-local first, then write serverless-offline
+  - serverless-offline
 
 provider:
   name: aws

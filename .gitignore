@@ -12,3 +12,6 @@
 
 # Webpack directories
 *.webpack
+
+# AWS Dynamodb
+**/.dynamodb
