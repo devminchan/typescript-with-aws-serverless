@@ -9,3 +9,6 @@
 
 # For sub folders
 *.gitignore
+
+# Webpack directories
+*.webpack
