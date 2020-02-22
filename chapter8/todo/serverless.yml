@@ -53,19 +53,7 @@ provider:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
 
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          method: get
-          path: hello
-  TodoGetAll:
-    handler: src/todo/all.all
-    events:
-      - http:
-          method: get
-          path: todos/all
-          cors: true
+  - '${file(functions.yml)}'
 
 package:
   exclude:
