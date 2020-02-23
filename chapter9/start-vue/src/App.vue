@@ -1,28 +1,50 @@
 <template>
   <div>
-    <span>{{ message }}</span><br/>
-    <span v-html="message"></span>
+    <h1>{{ title }}</h1>
+    <ol>
+      <li v-for="(item, index) in todoItems" 
+        :key="index" 
+        :class="{complete: item.complete}" 
+        @click="toggle(index)">
+        {{ item.title }}  
+      </li>
+    </ol>
+    <h2 v-if="remaining == 0">모두 완료</h2>
+    <h2 v-else>{{ remaining }}개 남음</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HellWorld',
+  name: 'app',
   data: () => {
     return {
-      message: '안녕하세요. <span style="color:red">Vue</span>입니다.',
+      title: '오늘의 할 일',
+      todoItems: [
+        { title: "운동하기", complete: false },
+        { title: "물마시기", complete: true },
+        { title: "잠자기", complete: false }
+      ]
     };
+  },
+  methods: {
+    toggle(index) {
+      console.log(index + " : " + this.todoItems[index].title);
+      this.todoItems[index].complete = !this.todoItems[index].complete;
+    }
+  },
+  computed: {
+    remaining() {
+      return this.todoItems.filter((i) => {
+        return i.complete == false;
+      }).length;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.complete {
+  text-decoration: line-through;
 }
 </style>
