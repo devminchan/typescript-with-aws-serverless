@@ -3,5 +3,5 @@ interface ITodo {
   task: string;
   deletedAt?: number;
   createAt: string;
-  isCompleted: boolean;
+  isCompleted: 0 | 1;
 }

@@ -28,3 +28,11 @@ TodoGet:
         method: get
         path: todo/{id}
         cors: true
+
+TodoUpdate:
+  handler: src/todo/update.update
+  events:
+    - http:
+        method: patch
+        path: todo
+        cors: true

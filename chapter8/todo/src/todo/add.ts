@@ -20,7 +20,7 @@ export const add: Handler = async (
     id: uuid(),
     deletedAt: -1,
     createAt: now,
-    isCompleted: true,
+    isCompleted: 0,
     task: input.task
   };
 
