@@ -2,12 +2,12 @@
   <div>
     <h1>{{ title }}</h1>
     <ol>
-      <li v-for="(item, index) in todoItems" 
-        :key="index" 
-        :class="{complete: item.complete}" 
-        @click="toggle(index)">
-        {{ item.title }}  
-      </li>
+      <Item v-for="(item, index) in todoItems"
+        :key="index"
+        :item="item"
+        :index="index"
+        @toggle="toggle">
+      </Item>
     </ol>
     <h2 v-if="remaining == 0">모두 완료</h2>
     <h2 v-else>{{ remaining }}개 남음</h2>
@@ -15,8 +15,13 @@
 </template>
 
 <script>
+import Item from './components/Item';
+
 export default {
   name: 'app',
+  components: {
+    Item
+  },
   data: () => {
     return {
       title: '오늘의 할 일',
