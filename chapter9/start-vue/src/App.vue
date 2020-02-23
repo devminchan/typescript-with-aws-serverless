@@ -16,11 +16,26 @@
 
 <script>
 // import Item from './components/Item.vue';
+const Item = {
+  name: "item",
+  props: ['item', 'index'],
+  methods: {
+    toggle() {
+      this.$emit("toggle", this.index);
+    }
+  },
+  render() {
+    return <li class={{complete: this.item.complete}}
+      onClick={this.toggle}>
+        {this.item.title}
+      </li>
+  }
+};
 
 export default {
   name: 'app',
   components: {
-    // Item
+    Item
   },
   data: () => {
     return {
