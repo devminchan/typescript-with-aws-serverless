@@ -44,3 +44,11 @@ TodoList:
         method: get
         path: todos
         cors: true
+
+TodoDelete:
+  handler: src/todo/del.del
+  events:
+    - http:
+        method: delete
+        path: todo/{id}
+        cors: true
