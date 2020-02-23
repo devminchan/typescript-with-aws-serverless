@@ -20,3 +20,11 @@ TodoAdd:
         method: post
         path: todo
         cors: true
+
+TodoGet:
+  handler: src/todo/get.get
+  events:
+    - http:
+        method: get
+        path: todo/{id}
+        cors: true
