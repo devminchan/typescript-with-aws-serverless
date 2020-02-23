@@ -36,3 +36,11 @@ TodoUpdate:
         method: patch
         path: todo
         cors: true
+
+TodoList:
+  handler: src/todo/list.list
+  events:
+    - http:
+        method: get
+        path: todos
+        cors: true
