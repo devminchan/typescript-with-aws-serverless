@@ -36,3 +36,13 @@
 *.njsproj
 *.sln
 *.sw?
+
+**/dist
+
+**/tests/e2e/videos/
+**/tests/e2e/screenshots/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
