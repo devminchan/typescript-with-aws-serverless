@@ -28,11 +28,20 @@ export default class WatchComponent extends Vue {
     };
   }
 
-  @Watch('user.age')
-  private onChangeUser(value: number, oldValue: number) {
-    if (value >= 18 && value < 70) {
+  // @Watch('user.age')
+  // private onChangeUser(value: number, oldValue: number) {
+  //   if (value >= 18 && value < 70) {
+  //     this.user.title = 'man';
+  //   } else if (value > 70) {
+  //     this.user.title = 'senior';
+  //   }
+  // }
+
+  @Watch('user', { deep: true })
+  private onChangeUser(value: IUser, oldValue: IUser) {
+    if (value.age >= 18 && value.age < 70) {
       this.user.title = 'man';
-    } else if (value > 70) {
+    } else if (value.age > 70) {
       this.user.title = 'senior';
     }
   }
