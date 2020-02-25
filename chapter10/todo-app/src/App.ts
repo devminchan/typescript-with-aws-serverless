@@ -5,12 +5,13 @@ import './App.scss';
 
 // import Props1 from '@/components/Props1.vue';
 // import Props2 from '@/components/Props2.vue';
-import Methods from '@/components/Methods.vue';
+// import Methods from '@/components/Methods.vue';
+import Watch from '@/components/Watch.vue';
 
 @WithRender
 @Component({
   components: {
-    Methods
+    Watch
   }
 })
 export default class App extends Vue {}
