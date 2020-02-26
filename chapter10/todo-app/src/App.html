@@ -1,4 +1,5 @@
 <div id="app">
   <!-- <Methods/> -->
-  <Watch/>
+  <CallEmit :name="name" @CallEmit="callMe"/>
+  <CallMethod :name="name" :CallMethod="callMe"/>
 </div>
