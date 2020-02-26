@@ -7,20 +7,22 @@ import './App.scss';
 // import Props2 from '@/components/Props2.vue';
 // import Methods from '@/components/Methods.vue';
 // import Watch from '@/components/Watch.vue';
-import CallEmit from '@/components/CallEmit.vue';
-import CallMethod from '@/components/CallMethod.vue';
+// import CallEmit from '@/components/CallEmit.vue';
+// import CallMethod from '@/components/CallMethod.vue';
+import Receiver from '@/components/Receiver';
+import Sender from '@/components/Sender';
 
 @WithRender
 @Component({
   components: {
-    CallEmit,
-    CallMethod,
+    Receiver,
+    Sender,
   }
 })
 export default class App extends Vue {
-  public name: string = 'no call';
+  // public name: string = 'no call';
 
-  public callMe(value: string): void {
-    this.name = value;
-  }
+  // public callMe(value: string): void {
+  //   this.name = value;
+  // }
 }
