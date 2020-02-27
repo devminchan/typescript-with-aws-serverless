@@ -1,5 +1,3 @@
-import Component from 'vue-class-component';
-
 declare module '*.html' {
   import Vue, { ComponentOptions, FunctionalComponentOptions } from 'vue';
 
@@ -10,5 +8,6 @@ declare module '*.html' {
     <V extends typeof Vue>(component: V): V;
   }
 
-  export default WithRender;
+  const withRender: WithRender;
+  export default withRender;
 }
