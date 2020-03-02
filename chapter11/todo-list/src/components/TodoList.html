@@ -5,9 +5,11 @@
     @keyup.enter="addItem()"
     />
   <ul>
-    <li v-for="(item, index) in todoItems">
-      {{ item.task }} -
-      <a href="#" @click="removeItem(index);">삭제</a>
-    </li>
+    <TodoListItem
+      v-for="(item, index) in todoItems"
+      :item="item"
+      :index="index"
+      @remove="removeItem">
+    </TodoListItem>
   </ul>
 </div>

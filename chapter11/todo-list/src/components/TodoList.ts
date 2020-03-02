@@ -1,26 +1,27 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import WithRender from './TodoList.html';
 import { Watch } from 'vue-property-decorator';
+import TodoListItem from './TodoListItem';
 // import './TodoList.css';
 
-interface ITodoItem {
+export interface ITodoItem {
   completed: boolean;
   task: string;
   createdAt: number;
 }
 
 @WithRender
-@Component
+@Component({
+  components: {
+    TodoListItem,
+  },
+})
 export default class TodoList extends Vue {
   private task: string = '';
   private todoItems: ITodoItem[] = [];
 
   private addItem() {
-    console.log('NEW1');
-
     if (!this.task) {
-      console.log('NEW2');
-
       alert('할 일을 입력해주세요');
       return;
     }
