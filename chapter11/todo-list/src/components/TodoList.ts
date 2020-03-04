@@ -1,6 +1,5 @@
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import WithRender from './TodoList.html';
-import { Watch } from 'vue-property-decorator';
 import TodoListItem from './TodoListItem';
 // import './TodoList.css';
 
@@ -37,5 +36,14 @@ export default class TodoList extends Vue {
 
   private removeItem(index: number) {
     this.todoItems.splice(index, 1);
+  }
+
+  @Watch('todoItems', { deep: true })
+  private onChangeTodoList() {
+    localStorage.setItem('TodoList', JSON.stringify(this.todoItems));
+  }
+
+  private created() {
+    this.todoItems = JSON.parse(localStorage.TodoList);
   }
 }
