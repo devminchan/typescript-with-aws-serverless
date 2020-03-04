@@ -7,7 +7,7 @@
   <ul>
     <TodoListItem
       v-for="(item, index) in todoItems"
-      :item="item"
+      :item.sync="item"
       :index="index"
       @remove="removeItem">
     </TodoListItem>

@@ -9,7 +9,7 @@
     {{ item.task }} - {{ createdAt }}
   </span>
   <span v-else>
-    <input type="text" v-model="item.task" @keyup.enter="isEdit = !isEdit"/>
+    <input type="text" v-model="itemSync.task" @keyup.enter="isEdit = !isEdit"/>
   </span>
   <a href="#" @click="$emit('remove', index)">삭제</a>
 </li>
