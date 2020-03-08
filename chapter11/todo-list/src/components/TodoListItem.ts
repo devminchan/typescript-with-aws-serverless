@@ -1,7 +1,9 @@
-import { Vue, Component, Prop, PropSync } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 import WithRender from './TodoListItem.html';
-import { ITodoItem } from './TodoList';
+import { ITodo } from './TodoList';
 import './TodoListItem.css';
+import moment from 'moment';
+moment.locale('ko');
 
 @WithRender
 @Component({
@@ -11,15 +13,30 @@ import './TodoListItem.css';
 })
 export default class TodoListItem extends Vue {
   @Prop(Object)
-  private item!: ITodoItem;
-
-  @PropSync('item', Object)
-  private itemSync!: ITodoItem;
+  private item!: ITodo;
 
   private isEdit: boolean = false;
+  private task: string = '';
+
+  private setEdit() {
+    this.task = this.item.task;
+    this.isEdit = true;
+    this.$nextTick(() => {
+      (this.$refs.inputEdit as HTMLInputElement).select();
+    });
+  }
+
+  @Watch('item.isCompleted')
+  private onChangeIsCompleted(newVal: boolean) {
+    this.$emit('update', this.item.id, { isCompleted: newVal } );
+  }
+
+  private updateTask() {
+    this.$emit('update', this.item.id, { task: this.task } );
+    this.isEdit = false;
+  }
 
   get createdAt() {
-    const date = new Date(this.item.createdAt * 1000);
-    return date.toLocaleTimeString();
+    return moment(this.item.createdAt).fromNow();
   }
 }

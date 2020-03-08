@@ -6,10 +6,11 @@
     />
   <ul>
     <TodoListItem
-      v-for="(item, index) in todoItems"
-      :item.sync="item"
+      v-for="(item, index) in todoItemList"
+      :item="item"
       :index="index"
-      @remove="removeItem">
+      @remove="removeItem"
+      @update="updateItem">
     </TodoListItem>
   </ul>
 </div>
