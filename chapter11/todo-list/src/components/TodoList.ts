@@ -89,4 +89,8 @@ export default class TodoList extends Vue {
   get countComplete(): number {
     return this.todoItems.filter(item => item.isCompleted).length;
   }
+
+  get progress(): number {
+    return (this.countComplete / this.todoItems.length) * 100;
+  }
 }
