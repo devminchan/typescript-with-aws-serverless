@@ -58,9 +58,11 @@ export default class TodoList extends Vue {
     const res = await axios.delete(this.apiUrl + 'todo/' + id);
 
     if (res.data.result) {
-      const index = this.todoItems.findIndex((item: ITodo) => {
-        return item.id === id;
-      });
+      // const index = this.todoItems.findIndex((item: ITodo) => {
+      //   return item.id === id;
+      // });
+
+      const index = this.$_.findIndex(this.todoItems, { id });
 
       this.todoItems.splice(index, 1);
     }
@@ -77,6 +79,6 @@ export default class TodoList extends Vue {
   }
 
   get todoItemList(): ITodo[] {
-    return this.todoItems;
+    return this.$_.sortBy(this.todoItems, ['createdAt'], ['desc']);
   }
 }
