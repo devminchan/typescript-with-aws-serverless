@@ -81,4 +81,12 @@ export default class TodoList extends Vue {
   get todoItemList(): ITodo[] {
     return this.$_.sortBy(this.todoItems, ['createdAt'], ['desc']);
   }
+
+  get countRemaining(): number {
+    return this.todoItems.filter(item => !item.isCompleted).length;
+  }
+
+  get countComplete(): number {
+    return this.todoItems.filter(item => item.isCompleted).length;
+  }
 }
