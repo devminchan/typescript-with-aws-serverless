@@ -18,6 +18,17 @@ export default class TodoListItem extends Vue {
   private isEdit: boolean = false;
   private task: string = '';
 
+  private createdAt: string = '';
+
+  private created() {
+    setInterval(this.updateCreatedAt, 1000);
+    this.updateCreatedAt();
+  }
+
+  private updateCreatedAt() {
+    this.createdAt = moment(this.item.createdAt).fromNow();
+  }
+
   private setEdit() {
     this.task = this.item.task;
     this.isEdit = true;
@@ -34,9 +45,5 @@ export default class TodoListItem extends Vue {
   private updateTask() {
     this.$emit('update', this.item.id, { task: this.task } );
     this.isEdit = false;
-  }
-
-  get createdAt() {
-    return moment(this.item.createdAt).fromNow();
   }
 }
