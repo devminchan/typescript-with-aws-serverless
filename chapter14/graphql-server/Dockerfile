@@ -1,0 +1,10 @@
+FROM node:10.13-alpine
+# ENV NODE_ENV production
+
+RUN npm install -g typescript ts-node
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --silent && mv node_modules ../
+COPY . .
+EXPOSE 4000
+CMD ts-node server.ts
