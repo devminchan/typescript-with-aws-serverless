@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2016",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true, // decorator 해석 
+    "emitDecoratorMetadata": true, //  decorator 해석
+    "lib": ["ES2016", "ESNext.AsyncIterable"] // graphql 구독 기능 이용
   },
   "exclude": ["node_modules"]
 }

@@ -1,16 +1,26 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
+import 'reflect-metadata';
+import { buildSchema, Field, ObjectType, Query, Resolver } from 'type-graphql';
 
+@ObjectType()
 class Author {
+  @Field()
   name: string;
   constructor(name: string) {
     this.name = name;
   }
 }
 
+@ObjectType()
 class Book {
+  @Field()
   title: string;
+  // eslint-disable-next-line no-unused-vars
+  @Field(type => Author)
   authors: Author[] = [];
+  @Field()
   year: number;
+  @Field({ nullable: true })
   subTitle?: string;
 
   constructor(title: string, name: string, year: number, subTitle?: string) {
@@ -29,29 +39,24 @@ const books: Book[] = [
   new Book('무정', '이광수', 1917),
 ];
 
-const typeDefs = gql`
-  type Author {
-    name: String!
+@Resolver()
+class BookResolver {
+  @Query(() => [Book])
+  async books(): Promise<Book[]> {
+    return books;
   }
-  type Book {
-    title: String!
-    authors: [Author]!
-    year: Int!
-    subTitle: String
-  }
-  type Query {
-    books: [Book]
-  }
-`;
+}
 
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
+async function main() {
+  const schema = await buildSchema({
+    resolvers: [BookResolver],
+  });
 
-const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({ schema, playground: true });
 
-server.listen().then(({ url }) => {
+  const { url } = await server.listen();
+
   console.log(`Server is running: ${url}`);
-});
+}
+
+main();
