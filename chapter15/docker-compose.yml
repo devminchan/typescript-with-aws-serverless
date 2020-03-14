@@ -16,3 +16,15 @@ services:
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     volumes: 
       - '/Users/kimminchan/data/mysql:/var/lib/mysql'
+  
+  app:
+    container_name: app
+    image: app:latest
+    build: .
+    environment: 
+      NODE_ENV: development
+      DB_HOST: rdb
+    ports: 
+      - 4000:4000
+    depends_on: 
+      - rdb
