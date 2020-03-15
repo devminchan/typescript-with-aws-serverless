@@ -17,5 +17,6 @@ createConnection()
     console.log('Loaded users: ', users);
 
     console.log('Here you can setup and run express/koa/any other framework.');
+    await connection.close();
   })
   .catch(error => console.log(error));
