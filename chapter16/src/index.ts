@@ -1,26 +1,24 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { User } from './entity/User';
+import { Profile } from './entity/Profile';
 
 createConnection()
   .then(async connection => {
-    console.log('새로운 유저 생성');
+    const profile = await Profile.create({
+      name: 'john',
+      age: 22,
+    }).save();
 
     // eslint-disable-next-line no-unused-vars
     const user = await User.create({
-      email: 'test@mail.com',
-      password: 'pass',
-      age: 20,
-      name: '홍길동',
+      email: 'tester@mail.com',
+      password: 'password',
+      profile,
     }).save();
 
-    console.log('사용자 목록');
-
-    const users = await User.find();
-
-    console.log('Loaded users: ', users);
-
-    console.log('접속 끊기');
+    console.log('saved: ', profile);
+    console.log('saved: ', user);
 
     await connection.close();
   })
