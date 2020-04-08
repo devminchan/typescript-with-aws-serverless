@@ -5,7 +5,6 @@ import {
   BaseEntity,
   CreateDateColumn,
   OneToOne,
-  JoinColumn,
 } from 'typeorm';
 import { Profile } from './Profile';
 
@@ -26,7 +25,9 @@ export class User extends BaseEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @OneToOne(() => Profile)
-  @JoinColumn()
+  @OneToOne(
+    () => Profile,
+    profile => profile.user,
+  )
   profile: Profile;
 }

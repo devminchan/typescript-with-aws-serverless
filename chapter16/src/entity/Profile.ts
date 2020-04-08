@@ -1,4 +1,12 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { User } from './User';
 
 @Entity()
 export class Profile extends BaseEntity {
@@ -13,4 +21,12 @@ export class Profile extends BaseEntity {
 
   @Column({ nullable: true })
   imageUrl?: string;
+
+  @OneToOne(
+    () => User,
+    user => user.profile,
+    { onDelete: 'CASCADE' },
+  )
+  @JoinColumn()
+  user: User;
 }
