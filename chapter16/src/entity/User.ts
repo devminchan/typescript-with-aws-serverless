@@ -5,8 +5,10 @@ import {
   BaseEntity,
   CreateDateColumn,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import { Profile } from './Profile';
+import { Post } from './Post';
 
 @Entity()
 export class User extends BaseEntity {
@@ -30,4 +32,10 @@ export class User extends BaseEntity {
     profile => profile.user,
   )
   profile: Profile;
+
+  @OneToMany(
+    () => Post,
+    post => post.user,
+  )
+  posts: Post[];
 }
